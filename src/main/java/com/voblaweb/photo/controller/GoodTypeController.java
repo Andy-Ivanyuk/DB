@@ -1,7 +1,7 @@
 package com.voblaweb.photo.controller;
 
 import com.voblaweb.photo.model.GoodType;
-import com.voblaweb.photo.service.goodtype.impls.GoodTypeService;
+import com.voblaweb.photo.service.goodtype.GoodTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

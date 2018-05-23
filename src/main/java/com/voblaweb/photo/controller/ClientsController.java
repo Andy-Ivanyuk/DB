@@ -1,7 +1,7 @@
 package com.voblaweb.photo.controller;
 
 import com.voblaweb.photo.model.Clients;
-import com.voblaweb.photo.service.clients.impls.ClientsService;
+import com.voblaweb.photo.service.clients.ClientsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
