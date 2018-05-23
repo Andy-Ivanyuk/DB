@@ -1,12 +1,24 @@
 package com.voblaweb.photo.model;
 
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "type_of_supplies")
+@EntityListeners(AuditingEntityListener.class)
 public class TypeOfSupplies {
+
+    @Id
+    @Column(name = "type_of_supplies_id")
     private int typeId;
     private String nameOfSupply;
 
-    public TypeOfSupplies(int typeId, String nameOfSupply) {
-        this.typeId = typeId;
+    public TypeOfSupplies(String nameOfSupply) {
         this.nameOfSupply = nameOfSupply;
+    }
+
+    public TypeOfSupplies() {
     }
 
     public int getTypeId() {
