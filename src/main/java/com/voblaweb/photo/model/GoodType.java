@@ -1,12 +1,23 @@
 package com.voblaweb.photo.model;
 
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "good_type")
+@EntityListeners(AuditingEntityListener.class)
 public class GoodType {
+    @Id
+    @Column(name = "good_type_id")
     private int goodTypeId;
     private String goodTypeName;
 
-    public GoodType(int goodTypeId, String goodTypeName) {
-        this.goodTypeId = goodTypeId;
+    public GoodType(String goodTypeName) {
         this.goodTypeName = goodTypeName;
+    }
+
+    public GoodType() {
     }
 
     public int getGoodTypeId() {

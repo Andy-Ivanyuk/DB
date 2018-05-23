@@ -1,8 +1,17 @@
 package com.voblaweb.photo.model;
 
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name = "hurry_supplies")
+@EntityListeners(AuditingEntityListener.class)
 public class HurrySupplies {
+
+    @Id
+    @Column(name = "hurry_supplies_id")
     private int hurrySuppliesId;
     private int typeOfSuppliesTypeId;
     private int branchesBranchId;
@@ -15,8 +24,7 @@ public class HurrySupplies {
     private Boolean isDone;
     private int clientsClientId;
 
-    public HurrySupplies(int hurrySuppliesId, int typeOfSuppliesTypeId, int branchesBranchId, int price, int amountOfPhotosPerFrame, int totalAmountOfPhotos, String format, String paperType, Date supplyDate, Boolean isDone, int clientsClientId) {
-        this.hurrySuppliesId = hurrySuppliesId;
+    public HurrySupplies(int typeOfSuppliesTypeId, int branchesBranchId, int price, int amountOfPhotosPerFrame, int totalAmountOfPhotos, String format, String paperType, Date supplyDate, Boolean isDone, int clientsClientId) {
         this.typeOfSuppliesTypeId = typeOfSuppliesTypeId;
         this.branchesBranchId = branchesBranchId;
         this.price = price;
@@ -27,6 +35,9 @@ public class HurrySupplies {
         this.supplyDate = supplyDate;
         this.isDone = isDone;
         this.clientsClientId = clientsClientId;
+    }
+
+    public HurrySupplies() {
     }
 
     public int getHurrySuppliesId() {

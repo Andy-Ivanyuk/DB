@@ -1,8 +1,17 @@
 package com.voblaweb.photo.model;
 
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name = "supplies")
+@EntityListeners(AuditingEntityListener.class)
 public class Supplies {
+
+    @Id
+    @Column(name = "supplies_id")
     private int suppliesId;
     private int kiosksKioskId;
     private int typeOfSuppliesTypeId;
@@ -15,8 +24,7 @@ public class Supplies {
     private Boolean isDone;
     private int clientsClientId;
 
-    public Supplies(int suppliesId, int kiosksKioskId, int typeOfSuppliesTypeId, int price, int amountOfPhotosPerFrame, int totalAmountOfPhotos, String format, String paperType, Date supplyDate, Boolean isDone, int clientsClientId) {
-        this.suppliesId = suppliesId;
+    public Supplies(int kiosksKioskId, int typeOfSuppliesTypeId, int price, int amountOfPhotosPerFrame, int totalAmountOfPhotos, String format, String paperType, Date supplyDate, Boolean isDone, int clientsClientId) {
         this.kiosksKioskId = kiosksKioskId;
         this.typeOfSuppliesTypeId = typeOfSuppliesTypeId;
         this.price = price;
@@ -27,6 +35,9 @@ public class Supplies {
         this.supplyDate = supplyDate;
         this.isDone = isDone;
         this.clientsClientId = clientsClientId;
+    }
+
+    public Supplies() {
     }
 
     public int getSuppliesId() {

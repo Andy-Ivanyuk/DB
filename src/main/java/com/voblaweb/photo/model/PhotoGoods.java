@@ -1,16 +1,27 @@
 package com.voblaweb.photo.model;
 
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "good")
+@EntityListeners(AuditingEntityListener.class)
 public class PhotoGoods {
+    @Id
+    @Column(name = "good_id")
     private int goodId;
     private String goodName;
     private int goodTypeGoodTypeId;
     private int suppliersSupplierId;
 
-    public PhotoGoods(int goodId, String goodName, int goodTypeGoodTypeId, int suppliersSupplierId) {
-        this.goodId = goodId;
+    public PhotoGoods(String goodName, int goodTypeGoodTypeId, int suppliersSupplierId) {
         this.goodName = goodName;
         this.goodTypeGoodTypeId = goodTypeGoodTypeId;
         this.suppliersSupplierId = suppliersSupplierId;
+    }
+
+    public PhotoGoods() {
     }
 
     public int getGoodId() {

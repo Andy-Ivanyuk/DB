@@ -1,16 +1,29 @@
 package com.voblaweb.photo.model;
 
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "clients")
+@EntityListeners(AuditingEntityListener.class)
 public class Clients {
+
+
+    @Id
+    @Column(name = "client_id")
     private int clientId;
     private String branchName;
     private Boolean discountCard;
     private int branchesBranchId;
 
-    public Clients(int clientId, String branchName, Boolean discountCard, int branchesBranchId) {
-        this.clientId = clientId;
+    public Clients(String branchName, Boolean discountCard, int branchesBranchId) {
         this.branchName = branchName;
         this.discountCard = discountCard;
         this.branchesBranchId = branchesBranchId;
+    }
+
+    public Clients() {
     }
 
     public int getClientId() {

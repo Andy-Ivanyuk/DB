@@ -1,14 +1,27 @@
 package com.voblaweb.photo.model;
 
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "calls")
+@EntityListeners(AuditingEntityListener.class)
 public class Branches {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "branch_id")
     private int branchId;
     private String branchAddress;
     private int branchAmountOfWorkplaces;
 
-    public Branches(int branchId, String branchAddress, int branchAmountOfWorkplaces) {
-        this.branchId = branchId;
+    public Branches(String branchAddress, int branchAmountOfWorkplaces) {
         this.branchAddress = branchAddress;
         this.branchAmountOfWorkplaces = branchAmountOfWorkplaces;
+    }
+
+    public Branches() {
     }
 
     public int getBranchId() {
