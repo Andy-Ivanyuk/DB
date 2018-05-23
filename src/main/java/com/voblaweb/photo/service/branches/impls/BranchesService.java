@@ -1,6 +1,5 @@
 package com.voblaweb.photo.service.branches.impls;
 
-import com.voblaweb.photo.DAO.branches.impls.BranchesDAOFakeImpl;
 import com.voblaweb.photo.model.Branches;
 import com.voblaweb.photo.service.branches.interfaces.IBranchesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +11,6 @@ import java.util.List;
 public class BranchesService implements IBranchesService {
 
     @Autowired
-    BranchesDAOFakeImpl branchesDAOFake;
-
     @Override
     public Branches insertBranches(Branches branch) {
         return null;
