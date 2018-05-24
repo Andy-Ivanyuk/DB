@@ -14,9 +14,10 @@ public class Kiosks {
     private int kioskId;
     private String kioskAddress;
     private int kioskAmountOfWorkplaces;
-    private int branchesBranchId;
+    @ManyToOne
+    private Branches branchesBranchId;
 
-    public Kiosks(String kioskAddress, int kioskAmountOfWorkplaces, int branchesBranchId) {
+    public Kiosks(String kioskAddress, int kioskAmountOfWorkplaces, Branches branchesBranchId) {
         this.kioskAddress = kioskAddress;
         this.kioskAmountOfWorkplaces = kioskAmountOfWorkplaces;
         this.branchesBranchId = branchesBranchId;
@@ -49,11 +50,11 @@ public class Kiosks {
         this.kioskAmountOfWorkplaces = kioskAmountOfWorkplaces;
     }
 
-    public int getBranchesBranchId() {
+    public Branches getBranchesBranchId() {
         return branchesBranchId;
     }
 
-    public void setBranchesBranchId(int branchesBranchId) {
+    public void setBranchesBranchId(Branches branchesBranchId) {
         this.branchesBranchId = branchesBranchId;
     }
 }

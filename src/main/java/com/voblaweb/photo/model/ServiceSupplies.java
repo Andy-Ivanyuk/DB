@@ -14,11 +14,15 @@ public class ServiceSupplies {
     @Column(name = "service_supplies_id")
     private int serviceSuppliesId;
     private Date date;
-    private int kiosksKioskId;
-    private int servicesServiceId;
-    private int clientsClientId;
+    @ManyToOne
+    private Kiosks kiosksKioskId;
+    @ManyToOne
+    private Services servicesServiceId;
+    @ManyToOne
+    private Clients clientsClientId;
 
-    public ServiceSupplies(Date date, int kiosksKioskId, int servicesServiceId, int clientsClientId) {
+    public ServiceSupplies(Date date, Kiosks kiosksKioskId, Services servicesServiceId,
+                           Clients clientsClientId) {
         this.date = date;
         this.kiosksKioskId = kiosksKioskId;
         this.servicesServiceId = servicesServiceId;
@@ -44,27 +48,27 @@ public class ServiceSupplies {
         this.date = date;
     }
 
-    public int getKiosksKioskId() {
+    public Kiosks getKiosksKioskId() {
         return kiosksKioskId;
     }
 
-    public void setKiosksKioskId(int kiosksKioskId) {
+    public void setKiosksKioskId(Kiosks kiosksKioskId) {
         this.kiosksKioskId = kiosksKioskId;
     }
 
-    public int getServicesServiceId() {
+    public Services getServicesServiceId() {
         return servicesServiceId;
     }
 
-    public void setServicesServiceId(int servicesServiceId) {
+    public void setServicesServiceId(Services servicesServiceId) {
         this.servicesServiceId = servicesServiceId;
     }
 
-    public int getClientsClientId() {
+    public Clients getClientsClientId() {
         return clientsClientId;
     }
 
-    public void setClientsClientId(int clientsClientId) {
+    public void setClientsClientId(Clients clientsClientId) {
         this.clientsClientId = clientsClientId;
     }
 }

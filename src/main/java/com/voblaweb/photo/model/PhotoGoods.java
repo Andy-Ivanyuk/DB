@@ -12,10 +12,12 @@ public class PhotoGoods {
     @Column(name = "good_id")
     private int goodId;
     private String goodName;
-    private int goodTypeGoodTypeId;
-    private int suppliersSupplierId;
+    @ManyToOne
+    private GoodType goodTypeGoodTypeId;
+    @ManyToOne
+    private Suppliers suppliersSupplierId;
 
-    public PhotoGoods(String goodName, int goodTypeGoodTypeId, int suppliersSupplierId) {
+    public PhotoGoods(String goodName, GoodType goodTypeGoodTypeId, Suppliers suppliersSupplierId) {
         this.goodName = goodName;
         this.goodTypeGoodTypeId = goodTypeGoodTypeId;
         this.suppliersSupplierId = suppliersSupplierId;
@@ -40,19 +42,19 @@ public class PhotoGoods {
         this.goodName = goodName;
     }
 
-    public int getGoodTypeGoodTypeId() {
+    public GoodType getGoodTypeGoodTypeId() {
         return goodTypeGoodTypeId;
     }
 
-    public void setGoodTypeGoodTypeId(int goodTypeGoodTypeId) {
+    public void setGoodTypeGoodTypeId(GoodType goodTypeGoodTypeId) {
         this.goodTypeGoodTypeId = goodTypeGoodTypeId;
     }
 
-    public int getSuppliersSupplierId() {
+    public Suppliers getSuppliersSupplierId() {
         return suppliersSupplierId;
     }
 
-    public void setSuppliersSupplierId(int suppliersSupplierId) {
+    public void setSuppliersSupplierId(Suppliers suppliersSupplierId) {
         this.suppliersSupplierId = suppliersSupplierId;
     }
 }

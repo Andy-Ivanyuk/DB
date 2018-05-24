@@ -13,8 +13,10 @@ public class HurrySupplies {
     @Id
     @Column(name = "hurry_supplies_id")
     private int hurrySuppliesId;
-    private int typeOfSuppliesTypeId;
-    private int branchesBranchId;
+    @ManyToOne
+    private TypeOfSupplies typeOfSuppliesTypeId;
+    @ManyToOne
+    private Branches branchesBranchId;
     private int price;
     private int amountOfPhotosPerFrame;
     private int totalAmountOfPhotos;
@@ -22,9 +24,12 @@ public class HurrySupplies {
     private String paperType;
     private Date supplyDate;
     private Boolean isDone;
-    private int clientsClientId;
+    @ManyToOne
+    private Clients clientsClientId;
 
-    public HurrySupplies(int typeOfSuppliesTypeId, int branchesBranchId, int price, int amountOfPhotosPerFrame, int totalAmountOfPhotos, String format, String paperType, Date supplyDate, Boolean isDone, int clientsClientId) {
+    public HurrySupplies(TypeOfSupplies typeOfSuppliesTypeId, Branches branchesBranchId, int price,
+                         int amountOfPhotosPerFrame, int totalAmountOfPhotos, String format,
+                         String paperType, Date supplyDate, Boolean isDone, Clients clientsClientId) {
         this.typeOfSuppliesTypeId = typeOfSuppliesTypeId;
         this.branchesBranchId = branchesBranchId;
         this.price = price;
@@ -48,19 +53,19 @@ public class HurrySupplies {
         this.hurrySuppliesId = hurrySuppliesId;
     }
 
-    public int getTypeOfSuppliesTypeId() {
+    public TypeOfSupplies getTypeOfSuppliesTypeId() {
         return typeOfSuppliesTypeId;
     }
 
-    public void setTypeOfSuppliesTypeId(int typeOfSuppliesTypeId) {
+    public void setTypeOfSuppliesTypeId(TypeOfSupplies typeOfSuppliesTypeId) {
         this.typeOfSuppliesTypeId = typeOfSuppliesTypeId;
     }
 
-    public int getBranchesBranchId() {
+    public Branches getBranchesBranchId() {
         return branchesBranchId;
     }
 
-    public void setBranchesBranchId(int branchesBranchId) {
+    public void setBranchesBranchId(Branches branchesBranchId) {
         this.branchesBranchId = branchesBranchId;
     }
 
@@ -120,11 +125,11 @@ public class HurrySupplies {
         isDone = done;
     }
 
-    public int getClientsClientId() {
+    public Clients getClientsClientId() {
         return clientsClientId;
     }
 
-    public void setClientsClientId(int clientsClientId) {
+    public void setClientsClientId(Clients clientsClientId) {
         this.clientsClientId = clientsClientId;
     }
 }

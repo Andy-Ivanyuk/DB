@@ -15,9 +15,10 @@ public class Clients {
     private int clientId;
     private String branchName;
     private Boolean discountCard;
-    private int branchesBranchId;
+    @ManyToOne
+    private Branches branchesBranchId;
 
-    public Clients(String branchName, Boolean discountCard, int branchesBranchId) {
+    public Clients(String branchName, Boolean discountCard, Branches branchesBranchId) {
         this.branchName = branchName;
         this.discountCard = discountCard;
         this.branchesBranchId = branchesBranchId;
@@ -50,11 +51,11 @@ public class Clients {
         this.discountCard = discountCard;
     }
 
-    public int getBranchesBranchId() {
+    public Branches getBranchesBranchId() {
         return branchesBranchId;
     }
 
-    public void setBranchesBranchId(int branchesBranchId) {
+    public void setBranchesBranchId(Branches branchesBranchId) {
         this.branchesBranchId = branchesBranchId;
     }
 }

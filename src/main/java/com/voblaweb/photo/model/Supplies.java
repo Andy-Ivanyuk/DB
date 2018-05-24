@@ -13,8 +13,10 @@ public class Supplies {
     @Id
     @Column(name = "supplies_id")
     private int suppliesId;
-    private int kiosksKioskId;
-    private int typeOfSuppliesTypeId;
+    @ManyToOne
+    private Kiosks kiosksKioskId;
+    @ManyToOne
+    private TypeOfSupplies typeOfSuppliesTypeId;
     private int price;
     private int amountOfPhotosPerFrame;
     private int totalAmountOfPhotos;
@@ -22,9 +24,12 @@ public class Supplies {
     private String paperType;
     private Date supplyDate;
     private Boolean isDone;
-    private int clientsClientId;
+    @ManyToOne
+    private Clients clientsClientId;
 
-    public Supplies(int kiosksKioskId, int typeOfSuppliesTypeId, int price, int amountOfPhotosPerFrame, int totalAmountOfPhotos, String format, String paperType, Date supplyDate, Boolean isDone, int clientsClientId) {
+    public Supplies(Kiosks kiosksKioskId, TypeOfSupplies typeOfSuppliesTypeId, int price,
+                    int amountOfPhotosPerFrame, int totalAmountOfPhotos, String format,
+                    String paperType, Date supplyDate, Boolean isDone, Clients clientsClientId) {
         this.kiosksKioskId = kiosksKioskId;
         this.typeOfSuppliesTypeId = typeOfSuppliesTypeId;
         this.price = price;
@@ -48,19 +53,19 @@ public class Supplies {
         this.suppliesId = suppliesId;
     }
 
-    public int getKiosksKioskId() {
+    public Kiosks getKiosksKioskId() {
         return kiosksKioskId;
     }
 
-    public void setKiosksKioskId(int kiosksKioskId) {
+    public void setKiosksKioskId(Kiosks kiosksKioskId) {
         this.kiosksKioskId = kiosksKioskId;
     }
 
-    public int getTypeOfSuppliesTypeId() {
+    public TypeOfSupplies getTypeOfSuppliesTypeId() {
         return typeOfSuppliesTypeId;
     }
 
-    public void setTypeOfSuppliesTypeId(int typeOfSuppliesTypeId) {
+    public void setTypeOfSuppliesTypeId(TypeOfSupplies typeOfSuppliesTypeId) {
         this.typeOfSuppliesTypeId = typeOfSuppliesTypeId;
     }
 
@@ -120,11 +125,11 @@ public class Supplies {
         isDone = done;
     }
 
-    public int getClientsClientId() {
+    public Clients getClientsClientId() {
         return clientsClientId;
     }
 
-    public void setClientsClientId(int clientsClientId) {
+    public void setClientsClientId(Clients clientsClientId) {
         this.clientsClientId = clientsClientId;
     }
 }

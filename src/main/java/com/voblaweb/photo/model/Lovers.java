@@ -12,9 +12,10 @@ public class Lovers {
     @Id
     @Column(name = "lover_id")
     private int loverId;
-    private int clientsClientId;
+    @ManyToOne
+    private Clients clientsClientId;
 
-    public Lovers(int clientsClientId) {
+    public Lovers(Clients clientsClientId) {
         this.clientsClientId = clientsClientId;
     }
 
@@ -29,11 +30,11 @@ public class Lovers {
         this.loverId = loverId;
     }
 
-    public int getClientsClientId() {
+    public Clients getClientsClientId() {
         return clientsClientId;
     }
 
-    public void setClientsClientId(int clientsClientId) {
+    public void setClientsClientId(Clients clientsClientId) {
         this.clientsClientId = clientsClientId;
     }
 }

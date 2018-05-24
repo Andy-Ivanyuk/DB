@@ -13,14 +13,17 @@ public class OfficeOrders {
     @Id
     @Column(name = "office_orders_id")
     private int officeOrdersId;
-    private int photoGoodsPhotoGoodsId;
-    private int kiosksKioskId;
+    @ManyToOne
+    private PhotoGoods photoGoodsPhotoGoodsId;
+    @ManyToOne
+    private Kiosks kiosksKioskId;
     private Date dateOfSupply;
     private int amountOfGoods;
     private int price;
     private Date dateOfSelling;
 
-    public OfficeOrders(int photoGoodsPhotoGoodsId, int kiosksKioskId, Date dateOfSupply, int amountOfGoods, int price, Date dateOfSelling) {
+    public OfficeOrders(PhotoGoods photoGoodsPhotoGoodsId, Kiosks kiosksKioskId, Date dateOfSupply,
+                        int amountOfGoods, int price, Date dateOfSelling) {
         this.photoGoodsPhotoGoodsId = photoGoodsPhotoGoodsId;
         this.kiosksKioskId = kiosksKioskId;
         this.dateOfSupply = dateOfSupply;
@@ -40,19 +43,19 @@ public class OfficeOrders {
         this.officeOrdersId = officeOrdersId;
     }
 
-    public int getPhotoGoodsPhotoGoodsId() {
+    public PhotoGoods getPhotoGoodsPhotoGoodsId() {
         return photoGoodsPhotoGoodsId;
     }
 
-    public void setPhotoGoodsPhotoGoodsId(int photoGoodsPhotoGoodsId) {
+    public void setPhotoGoodsPhotoGoodsId(PhotoGoods photoGoodsPhotoGoodsId) {
         this.photoGoodsPhotoGoodsId = photoGoodsPhotoGoodsId;
     }
 
-    public int getKiosksKioskId() {
+    public Kiosks getKiosksKioskId() {
         return kiosksKioskId;
     }
 
-    public void setKiosksKioskId(int kiosksKioskId) {
+    public void setKiosksKioskId(Kiosks kiosksKioskId) {
         this.kiosksKioskId = kiosksKioskId;
     }
 

@@ -12,10 +12,11 @@ public class Professionals {
     @Id
     @Column(name = "professionals_id")
     private int professionalId;
-    private int clientsClientId;
+    @ManyToOne
+    private Clients clientsClientId;
     private Boolean personalDiscount;
 
-    public Professionals(int clientsClientId, Boolean personalDiscount) {
+    public Professionals(Clients clientsClientId, Boolean personalDiscount) {
         this.clientsClientId = clientsClientId;
         this.personalDiscount = personalDiscount;
     }
@@ -31,11 +32,11 @@ public class Professionals {
         this.professionalId = professionalId;
     }
 
-    public int getClientsClientId() {
+    public Clients getClientsClientId() {
         return clientsClientId;
     }
 
-    public void setClientsClientId(int clientsClientId) {
+    public void setClientsClientId(Clients clientsClientId) {
         this.clientsClientId = clientsClientId;
     }
 
