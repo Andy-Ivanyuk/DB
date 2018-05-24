@@ -1,21 +1,36 @@
 package com.voblaweb.photo.controller;
 
 import com.voblaweb.photo.model.Kiosks;
-import com.voblaweb.photo.service.kiosks.KiosksService;
+import com.voblaweb.photo.service.kiosks.IKiosksService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/kiosks")
 public class KiosksController {
     @Autowired
-    KiosksService kiosksService;
-    @RequestMapping("/kiosks")
-    public List<Kiosks> show() throws SQLException {
+    IKiosksService kiosksService;
+
+    @RequestMapping("/get")
+    public List<Kiosks> getKiosks(){
         return kiosksService.getAll();
+    }
+
+    @PostMapping("/insert")
+    public Kiosks insertCall(@RequestBody Kiosks kiosks) {
+        return kiosksService.insert(kiosks);
+    }
+
+    @RequestMapping("/update")
+    public Kiosks updateCall(@RequestBody Kiosks kiosks, @RequestParam("id") int id) {
+        kiosks.setKioskId(id);
+        return kiosksService.update(kiosks);
+    }
+
+    @RequestMapping("/del")
+    public void delCall(@RequestParam("id") int id){
+        kiosksService.deleteById((int)id);
     }
 }

@@ -1,21 +1,36 @@
 package com.voblaweb.photo.controller;
 
 import com.voblaweb.photo.model.Lovers;
-import com.voblaweb.photo.service.lovers.LoversService;
+import com.voblaweb.photo.service.lovers.ILoversService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/lovers")
 public class LoversController {
     @Autowired
-    LoversService loversService;
-    @RequestMapping("/lovers")
-    public List<Lovers> show() throws SQLException {
+    ILoversService loversService;
+
+    @RequestMapping("/get")
+    public List<Lovers> getLovers(){
         return loversService.getAll();
+    }
+
+    @PostMapping("/insert")
+    public Lovers insertCall(@RequestBody Lovers lovers) {
+        return loversService.insert(lovers);
+    }
+
+    @RequestMapping("/update")
+    public Lovers updateCall(@RequestBody Lovers lovers,@RequestParam("id") int id) {
+        lovers.setLoverId(id);
+        return loversService.update(lovers);
+    }
+
+    @RequestMapping("/del")
+    public void delCall(@RequestParam("id") int id){
+        loversService.deleteById((int)id);
     }
 }

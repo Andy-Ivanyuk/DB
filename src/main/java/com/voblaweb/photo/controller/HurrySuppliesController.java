@@ -1,21 +1,36 @@
 package com.voblaweb.photo.controller;
 
 import com.voblaweb.photo.model.HurrySupplies;
-import com.voblaweb.photo.service.hurrysupplies.HurrySuppliesService;
+import com.voblaweb.photo.service.hurrysupplies.IHurrySuppliesService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/hurry_supplies")
 public class HurrySuppliesController {
     @Autowired
-    HurrySuppliesService hurrySuppliesService;
-    @RequestMapping("/hurry_supplies")
-    public List<HurrySupplies> show() throws SQLException {
+    IHurrySuppliesService hurrySuppliesService;
+
+    @RequestMapping("/get")
+    public List<HurrySupplies> getHurrySupplies(){
         return hurrySuppliesService.getAll();
+    }
+
+    @PostMapping("/insert")
+    public HurrySupplies insertCall(@RequestBody HurrySupplies hurrySupplies) {
+        return hurrySuppliesService.insert(hurrySupplies);
+    }
+
+    @RequestMapping("/update")
+    public HurrySupplies updateCall(@RequestBody HurrySupplies hurrySupplies, @RequestParam("id") int id) {
+        hurrySupplies.setHurrySuppliesId(id);
+        return hurrySuppliesService.update(hurrySupplies);
+    }
+
+    @RequestMapping("/del")
+    public void delCall(@RequestParam("id") int id){
+        hurrySuppliesService.deleteById((int)id);
     }
 }

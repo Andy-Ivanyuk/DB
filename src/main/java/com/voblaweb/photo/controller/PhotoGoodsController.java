@@ -1,21 +1,36 @@
 package com.voblaweb.photo.controller;
 
 import com.voblaweb.photo.model.PhotoGoods;
-import com.voblaweb.photo.service.photogoods.PhotoGoodsService;
+import com.voblaweb.photo.service.photogoods.IPhotoGoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/photo_goods")
 public class PhotoGoodsController {
     @Autowired
-    PhotoGoodsService photoGoodsService;
-    @RequestMapping("/photo_goods")
-    public List<PhotoGoods> show() throws SQLException {
+    IPhotoGoodsService photoGoodsService;
+
+    @RequestMapping("/get")
+    public List<PhotoGoods> getPhotoGoods(){
         return photoGoodsService.getAll();
+    }
+
+    @PostMapping("/insert")
+    public PhotoGoods insertCall(@RequestBody PhotoGoods photoGoods) {
+        return photoGoodsService.insert(photoGoods);
+    }
+
+    @RequestMapping("/update")
+    public PhotoGoods updateCall(@RequestBody PhotoGoods photoGoods,@RequestParam("id") int id) {
+        photoGoods.setGoodId(id);
+        return photoGoodsService.update(photoGoods);
+    }
+
+    @RequestMapping("/del")
+    public void delCall(@RequestParam("id") int id){
+        photoGoodsService.deleteById((int)id);
     }
 }

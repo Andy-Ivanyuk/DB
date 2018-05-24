@@ -1,21 +1,36 @@
 package com.voblaweb.photo.controller;
 
 import com.voblaweb.photo.model.Professionals;
-import com.voblaweb.photo.service.professionals.ProfessionalsService;
+import com.voblaweb.photo.service.professionals.IProfessionalsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/professionals")
 public class ProfessionalsController {
     @Autowired
-    ProfessionalsService professionalsService;
-    @RequestMapping("/professionals")
-    public List<Professionals> show() throws SQLException {
+    IProfessionalsService professionalsService;
+
+    @RequestMapping("/get")
+    public List<Professionals> getProfessionals(){
         return professionalsService.getAll();
+    }
+
+    @PostMapping("/insert")
+    public Professionals insertCall(@RequestBody Professionals professionals) {
+        return professionalsService.insert(professionals);
+    }
+
+    @RequestMapping("/update")
+    public Professionals updateCall(@RequestBody Professionals professionals,@RequestParam("id") int id) {
+        professionals.setProfessionalId(id);
+        return professionalsService.update(professionals);
+    }
+
+    @RequestMapping("/del")
+    public void delCall(@RequestParam("id") int id){
+        professionalsService.deleteById((int)id);
     }
 }

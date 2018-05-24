@@ -1,21 +1,36 @@
 package com.voblaweb.photo.controller;
 
 import com.voblaweb.photo.model.TypeOfSupplies;
-import com.voblaweb.photo.service.typeofsupplies.TypeOfSuppliesServices;
+import com.voblaweb.photo.service.typeofsupplies.ITypeOfSuppliesServices;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/type_of_supplies")
 public class TypeOfSuppliesController {
     @Autowired
-    TypeOfSuppliesServices typeOfSuppliesServices;
-    @RequestMapping("/type_of_supplies")
-    public List<TypeOfSupplies> show() throws SQLException {
-        return typeOfSuppliesServices.getAll();
+    ITypeOfSuppliesServices typeOfSuppliesService;
+
+    @RequestMapping("/get")
+    public List<TypeOfSupplies> getTypeOfSupplies(){
+        return typeOfSuppliesService.getAll();
+    }
+
+    @PostMapping("/insert")
+    public TypeOfSupplies insertCall(@RequestBody TypeOfSupplies typeOfSupplies) {
+        return typeOfSuppliesService.insert(typeOfSupplies);
+    }
+
+    @RequestMapping("/update")
+    public TypeOfSupplies updateCall(@RequestBody TypeOfSupplies typeOfSupplies,@RequestParam("id") int id) {
+        typeOfSupplies.setTypeId(id);
+        return typeOfSuppliesService.update(typeOfSupplies);
+    }
+
+    @RequestMapping("/del")
+    public void delCall(@RequestParam("id") int id){
+        typeOfSuppliesService.deleteById((int)id);
     }
 }
