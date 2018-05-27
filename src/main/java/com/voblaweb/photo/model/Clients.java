@@ -13,13 +13,13 @@ public class Clients {
     @Id
     @Column(name = "client_id")
     private int clientId;
-    private String branchName;
+    private String clientName;
     private Boolean discountCard;
     @ManyToOne
     private Branches branchesBranchId;
 
-    public Clients(String branchName, Boolean discountCard, Branches branchesBranchId) {
-        this.branchName = branchName;
+    public Clients(String clientName, Boolean discountCard, Branches branchesBranchId) {
+        this.clientName = clientName;
         this.discountCard = discountCard;
         this.branchesBranchId = branchesBranchId;
     }
@@ -36,11 +36,11 @@ public class Clients {
     }
 
     public String getBranchName() {
-        return branchName;
+        return clientName;
     }
 
     public void setBranchName(String branchName) {
-        this.branchName = branchName;
+        this.clientName = branchName;
     }
 
     public Boolean getDiscountCard() {
